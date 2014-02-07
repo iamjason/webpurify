@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<title>WebPurify Profanity Filter Utility</title>
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/webpurify.jQuery.js"></script>
+		
+		<script type="text/javascript">
+		
+			$(document).ready(function() {
+				$.webpurify.init('YOURAPIKEYHERE');
+			});
+			
+			function check(){	
+				$.webpurify.check( $("#check").val(), function(isProfane){
+					alert( '$.webpurify.check() - ' + isProfane );
+				});
+			}	
+					
+			function checkcount(){
+				$.webpurify.checkcount( $("#checkcount").val(), function(num){
+					alert( '$.webpurify.checkcount() - ' + num + ' profane word(s).' );
+				});
+			}
+			
+			function replace(){
+				$.webpurify.replace( $("#replace").val(), $("#replaceToken").val(), function(text){
+					alert( '$.webpurify.replace() - ' + text );
+				});
+			}
+			
+			function returnProfanity(){
+				$.webpurify.returnProfanity( $("#returnProfanity").val(), function(words){
+					$.each(words, function(index, value) { 
+					  alert(index + ': ' + value); 
+					});
+				});
+			}
+			
+		</script>
+		
+		
+	</head>
+	<body>
+	
+		<p>$.webpurify.check()</p>
+		<input type="text" id="check">
+		<input type="button" onclick="check();" value="check" />
+		<br />
+		
+		<p>$.webpurify.checkcount()</p>
+		<input type="text" id="checkcount" />
+		<input type="button" onclick="checkcount();" value="check" />
+		<br />
+		
+		<p>$.webpurify.replace()</p>
+		<input type="text" id="replace" />
+		<input type="text" id="replaceToken" value="*" />
+		<input type="button" onclick="replace();" value="check" />
+		<br />
+		
+		<p>$.webpurify.returnProfanity()</p>
+		<input type="text" id="returnProfanity" />
+		<input type="button" onclick="returnProfanity();" value="check" />
+		<br />
+	
+	</body>
+</html>
